@@ -1,0 +1,28 @@
+#include<SoftwareSerial.h>
+SoftwareSerial BT(10,11);
+int Light=9;
+void setup()
+{
+Serial.begin(9600);
+BT.begin(9600);
+pinMode(Light,OUTPUT);
+Serial.print("Received Signal ");
+}
+void loop()
+{
+if(BT.available())
+{
+int data=BT.read();
+Serial.println(data);
+if(data==1)
+{
+digitalWrite(Light,HIGH);
+Serial.print("Light ON");
+}
+if(data==0)
+{
+digitalWrite(Light,LOW);
+Serial.println("LIGHT OFF");
+}
+}
+}
